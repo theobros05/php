@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="6" guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="methods">
+  <test name="Test(failed)" parallel="methods">
+    <classes>
+      <class name="Testcase.TestCases">
+        <methods>
+          <include name="forward"/>
+          <include name="endTest"/>
+          <include name="Replacedoc"/>
+          <include name="afterMethod"/>
+          <include name="features"/>
+          <include name="a"/>
+          <include name="beforeMethod"/>
+          <include name="delete"/>
+          <include name="fetch"/>
+        </methods>
+      </class> <!-- Testcase.TestCases -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
