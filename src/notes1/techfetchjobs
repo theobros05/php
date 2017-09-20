@@ -1,0 +1,116 @@
+import java.util.concurrent.TimeUnit;
+import java.util.Date;
+import java.io.File;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.*;
+import static org.openqa.selenium.OutputType.*;
+
+public class  {
+    public static void main(String[] args) throws Exception {
+        FirefoxDriver wd;
+        wd = new FirefoxDriver();
+        wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        wd.get("http://uat.techfetch.com/");
+        new Actions(wd).moveToElement(wd.findElement(By.id("miniheader-top-first"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form[@id='form1']/header/div[1]"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.main-navigation.animated"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.id("ucHeaderCtrl_notloggedin"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Home"))).build().perform();
+        wd.findElement(By.linkText("Home")).click();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form[@id='form1']/header/div[2]/div/div"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Home"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.id("ucHeaderCtrl_notloggedin"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("ul.home.dropdown-menu"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("FETCH Jobs"))).build().perform();
+        wd.findElement(By.linkText("FETCH Jobs")).click();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.caption"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form[@id='form1']/header/div[2]/div/div"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.id("ucHeaderCtrl_divJobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("FETCH Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Java J2EE"))).build().perform();
+        wd.findElement(By.linkText("Java J2EE")).click();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.caption"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form[@id='form1']/header"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form[@id='form1']/header/div[2]/div/div"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.id("ucHeaderCtrl_divJobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("ul.home.dropdown-menu"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("FETCH Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Java J2EE"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Dot Net, C#"))).build().perform();
+        wd.findElement(By.linkText("Dot Net, C#")).click();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.caption"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form[@id='form1']/header"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.id("ucHeaderCtrl_notloggedin"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("FETCH Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Dot Net, C#"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("DBA"))).build().perform();
+        wd.findElement(By.linkText("DBA")).click();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.caption-title"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.caption"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form[@id='form1']/header"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form[@id='form1']/header/div[2]/div/div"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("FETCH Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Java J2EE"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("DBA"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("SAP"))).build().perform();
+        wd.findElement(By.linkText("SAP")).click();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//div[@class='formfetchjobs']/div"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.caption"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form[@id='form1']/header/div[2]/div/div"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("FETCH Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("DBA"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("SAP"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Admin, Networking"))).build().perform();
+        wd.findElement(By.linkText("Admin, Networking")).click();
+        new Actions(wd).moveToElement(wd.findElement(By.id("btnfetchjob"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.caption-title"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form[@id='form1']/header"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.main-navigation.animated"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.header-top-dropdown"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.header-top-dropdown"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("FETCH Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("DBA"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Admin, Networking"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Datawarehousing"))).build().perform();
+        wd.findElement(By.linkText("Datawarehousing")).click();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.caption"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form[@id='form1']/header"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.id("ucHeaderCtrl_notloggedin"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Jobs"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Java J2EE"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Admin, Networking"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Datawarehousing"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("QA"))).build().perform();
+        wd.findElement(By.linkText("QA")).click();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.caption"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//div[@class='formfetchjobs']/div"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.caption"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form[@id='form1']/header"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.linkText("Events"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.caption"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("h2"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.col-md-8"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("h2"))).build().perform();
+        wd.quit();
+    }
+    
+    public static boolean isAlertPresent(FirefoxDriver wd) {
+        try {
+            wd.switchTo().alert();
+            return true;
+        } catch (NoAlertPresentException e) {
+            return false;
+        }
+    }
+}

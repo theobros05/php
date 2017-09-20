@@ -1,0 +1,15 @@
+https://www.guru99.com/implicit-explicit-waits-selenium.html
+
+
+driver.manage().timeouts().pageLoadTimeout(10,TimeUnit.SECONDS);
+
+		 	
+driver.manage().timeouts().setScriptTimeout(10,TimeUnit.SECONDS);
+
+driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		 	
+driver.manage().timeouts().wait(1000);
+		 	
+driver.manage().timeouts().wait();
+		 	
+driver.manage().timeouts().wait(1000, 100);

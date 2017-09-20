@@ -1,0 +1,68 @@
+import java.util.concurrent.TimeUnit;
+import java.util.Date;
+import java.io.File;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.*;
+import static org.openqa.selenium.OutputType.*;
+
+public class  {
+    public static void main(String[] args) throws Exception {
+        FirefoxDriver wd;
+        wd = new FirefoxDriver();
+        wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        wd.get("http://uat.techfetch.com/JS/JS_My_Resume.aspx");
+        new Actions(wd).moveToElement(wd.findElement(By.id("jslogin"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.id("candidatecontentframe"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.id("candidatecontentframe"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.se-pre-con"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.se-pre-con"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.id("contentframe"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[4]"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[5]"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[5]/a/img"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[5]"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[6]"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[6]/a"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[6]/a/img"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[6]/a"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[6]"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[7]"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[7]/a/img"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[7]"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[6]"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[6]/a"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[5]"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[5]/a/img"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[5]"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[4]"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[4]/a/img"))).build().perform();
+        wd = (FirefoxDriver) wd.switchTo().frame();
+        wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[4]/a/img")).click();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//div"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.id("replacedoc"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.id("replacedoccontentframe"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.id("replacedoc"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//div[@id='replacedocpopupcont']/div/div"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.id("replacedoccontentframe"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.cssSelector("div.modal-backdrop.fade"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//div[@id='cssmenu']/ul"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//div[@id='ctl04_topnavmenu']/div[2]"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.id("contentframe"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[5]/td[2]"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[2]/div[1]/div/div[2]/table/tbody/tr[1]/td/div/div[1]/div/div/div/div/a/img"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.id("contentframe"))).build().perform();
+        new Actions(wd).moveToElement(wd.findElement(By.xpath("//form/div[4]/div/div[2]/div[2]/div/div[2]/table/tbody/tr[1]/td/div/div[1]/div/div/div/div/a/img"))).build().perform();
+        wd.quit();
+    }
+    
+    public static boolean isAlertPresent(FirefoxDriver wd) {
+        try {
+            wd.switchTo().alert();
+            return true;
+        } catch (NoAlertPresentException e) {
+            return false;
+        }
+    }
+}

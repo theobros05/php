@@ -1,0 +1,29 @@
+import java.util.concurrent.TimeUnit;
+import java.util.Date;
+import java.io.File;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.*;
+import static org.openqa.selenium.OutputType.*;
+
+public class  {
+    public static void main(String[] args) throws Exception {
+        FirefoxDriver wd;
+        wd = new FirefoxDriver();
+        wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        wd.get("http://uat.techfetch.com/JS/dashboard.aspx?page=myresume");
+        wd = (FirefoxDriver) wd.switchTo().frame();
+        wd.findElement(By.xpath("//form/div[4]/div/div[1]/div/div/div[2]/span/table/tbody/tr[1]/td[4]/a/img")).click();
+        wd.quit();
+    }
+    
+    public static boolean isAlertPresent(FirefoxDriver wd) {
+        try {
+            wd.switchTo().alert();
+            return true;
+        } catch (NoAlertPresentException e) {
+            return false;
+        }
+    }
+}
