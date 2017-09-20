@@ -1,16 +1,9 @@
 package candidatepages;
 
 import testbase.TestBase;
-
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
+import com.aventstack.extentreports.Status;
 import candidatepages.Login;
 import candidatepages.Logout;
 
@@ -76,8 +69,8 @@ public class Delete extends TestBase {
 
 		getWebElement("delete").click();
 
-		logger.info("delete button clicked on content frame");
-		// Thread.sleep(1000);
+		logger.info("Delete button clicked on content frame");
+		er.log(Status.INFO, "Delete button clicked on content frame");
 		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
 
 		driver.switchTo().defaultContent();
@@ -85,14 +78,13 @@ public class Delete extends TestBase {
 		driver.switchTo().frame("deleteprofilecontentframe");
 
 		logger.info("Delete My Profile Permanently");
-
+		er.log(Status.INFO, "Delete My Profile Permanently");
 		getWebElement("rdDelete").click();
 
 		getWebElement("btnDelete").click();
 		logger.info("submit button clicked");
+		er.log(Status.INFO, "submit button clicked");
 		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
-
-		// Thread.sleep(3000);
 
 		driver.switchTo().defaultContent();
 
@@ -101,17 +93,18 @@ public class Delete extends TestBase {
 		getWebElement("rdbtnParttimeno").click();
 
 		logger.info("clicking the radio buttton");
-
+		er.log(Status.INFO, "clicking the radio buttton");
 		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
 		getWebElement("deleteprofile").click();
 		logger.info("clicking delete button");
+		er.log(Status.INFO, "clicking delete button");
+		er.log(Status.INFO, "Redirecting to logout");
 		Thread.sleep(5000);
 
 	}
 
 	public static void main(String[] args) throws Exception {
-		TestBase.loadPropertiesFile();
-		TestBase.getBrowser("chrome");
+		TestBase.getBrowser();
 		Login.run();
 		Delete.remove();
 		Logout.out();

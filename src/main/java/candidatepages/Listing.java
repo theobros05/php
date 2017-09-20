@@ -7,6 +7,8 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.aventstack.extentreports.Status;
+
 
 
 public class Listing extends TestBase {
@@ -22,20 +24,23 @@ public class Listing extends TestBase {
 		// create jobalert
 		getWebElement("createJobalert").click();
 		logger.info("Clicking Create jobalert ");
-		
+		er.log(Status.INFO, "Clicking Create jobalert");
 		driver.switchTo().defaultContent();
 		driver.switchTo().frame("contentframe");
 		Select Select = new Select(getWebElement("profileSelection"));
 		logger.info("Selecting profile ");
+		er.log(Status.INFO, "Selecting profile");
 		driver.manage().timeouts().pageLoadTimeout(10,TimeUnit.SECONDS);
 		Select.selectByIndex(5);
 		getWebElement(("excludeCompany")).sendKeys(("excludeCompanyname"));
 		logger.info("Entering exclude company name");
+		er.log(Status.INFO, "Entering exclude company name");
 		
 		wait = new WebDriverWait(driver, 15);
 		getWebElement(("alertName1")).sendKeys(("alertName"));
 		getWebElement(("saveButton")).click();
 		logger.info("Clicking save alert");
+		er.log(Status.INFO, "Clicking save alert");
 		
 		driver.switchTo().defaultContent();
 		Thread.sleep(3000);
@@ -69,14 +74,15 @@ public class Listing extends TestBase {
 		
 		driver.switchTo().defaultContent();
 		driver.manage().timeouts().pageLoadTimeout(10,TimeUnit.SECONDS);*/
+		er.log(Status.INFO, "Redirecting to logout");
 		 Thread.sleep(5000);
 	}
 
 	public static void main(String[] args) throws Exception {
-		TestBase.loadPropertiesFile();
-		TestBase.getBrowser("chrome");
+		TestBase.getBrowser();
 		Login.run();
 		Listing.list();
+		Logout.out();
 
 	}
 }

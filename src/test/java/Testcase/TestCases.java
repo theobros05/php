@@ -9,7 +9,6 @@ import candidatepages.Listing;
 import candidatepages.Login;
 import candidatepages.Logout;
 import candidatepages.ReplaceDoc;
-import candidatepages.Update;
 import testbase.TestBase;
 
 public class TestCases extends TestBase {
@@ -17,11 +16,11 @@ public class TestCases extends TestBase {
 	@BeforeMethod
 	public void a() throws Exception {
 
-		testbase.TestBase.loadPropertiesFile();
-		testbase.TestBase.getBrowser("chrome");
+		
+		testbase.TestBase.getBrowser();
 
 	}
-
+	
 	@Test
 	public void Replacedoc() throws Exception { // replacedoc
 		System.out.println("replacedoc");

@@ -202,11 +202,11 @@ public class Update extends TestBase { // code working need little change
 	}
 
 	public static void main(String[] args) throws Exception {
-		TestBase.loadPropertiesFile();
 
-		TestBase.getBrowser("chrome");
+		TestBase.getBrowser();
 		Login.run();
 		Update.updat();
+		Logout.out();
 
 	}
 

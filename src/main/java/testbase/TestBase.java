@@ -18,27 +18,42 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.htmlunit.*;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.configuration.ChartLocation;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
 public class TestBase {
 	public static Logger logger = Logger.getLogger(TestBase.class.getName());
+
+	//public static Logger logger = Logger.getLogger("mylogger");
 	public static Calendar calendar = Calendar.getInstance();
 	public static WebDriver driver;
 	public static Properties OR;
 	public static File f1;
 	public static FileInputStream file;
+	public static ExtentHtmlReporter htmlReporter;
 	public static ExtentReports extent;
-	public static ExtentTest test;
+	public static ExtentTest er;
 	public ITestResult result;
+	public static String browser;
 
-	public static void getBrowser(String browser) {
+	public static void getBrowser() throws Exception {
+
+		TestBase.loadPropertiesFile();
+
+		browser = OR.getProperty("Browser");
+
 		if (System.getProperty("os.name").contains("Window")) {
 			if (browser.equalsIgnoreCase("firefox")) {
 				// https://github.com/mozilla/geckodriver/releases
@@ -51,11 +66,9 @@ public class TestBase {
 				System.setProperty("webdriver.chrome.driver",
 						System.getProperty("user.dir") + "/src/main/resources/drivers/chromedriver.exe");
 				driver = new ChromeDriver();
-			}
+			} else if (browser.equalsIgnoreCase("html")) {
 
-			else if (browser.equalsIgnoreCase("html")) {
-
-				driver = new HtmlUnitDriver();
+				driver = new HtmlUnitDriver(true);
 			}
 		} else if (System.getProperty("os.name").contains("Mac")) {
 			System.out.println(System.getProperty("os.name"));
@@ -73,22 +86,47 @@ public class TestBase {
 	static {
 
 		SimpleDateFormat formater = new SimpleDateFormat("dd_MM_yyyy_hh_mm");
-		extent = new ExtentReports(System.getProperty("user.dir") + "/src/main/java/Report/test-"
-				+ formater.format(calendar.getTime()) + ".html", false);
+		
+		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/src/main/java/Report/ExtentReport3.0-"
+				+ formater.format(calendar.getTime()) + ".html");
+		extent = new ExtentReports();
+
+		extent.attachReporter(htmlReporter);
+
+		extent.setSystemInfo("BrowerType", "Chrome");
+
+		extent.setSystemInfo("Author", "Theo");
+
+		htmlReporter.config().setDocumentTitle("Report");
+
+		htmlReporter.config().setReportName("Tech Fetch candidate pages");
+		
+		htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
+
+		htmlReporter.config().setTheme(Theme.STANDARD); // DARK
+
+		htmlReporter.config().setEncoding("utf-8");
+
 	}
 
 	public void getresult(ITestResult result) throws IOException {
 		if (result.getStatus() == ITestResult.SUCCESS) {
 
-			test.log(LogStatus.PASS, result.getName() + " test passed");
-		} else if (result.getStatus() == ITestResult.SKIP) {
-			test.log(LogStatus.SKIP,
-					result.getName() + " test is skipped and skip reason is:-" + result.getThrowable());
-		} else if (result.getStatus() == ITestResult.FAILURE) {
-			test.log(LogStatus.FAIL, result.getName() + " test failed" + result.getThrowable());
+			er.log(Status.PASS, MarkupHelper.createLabel(result.getName() + " - Test passed", ExtentColor.GREEN));
 
+		} else if (result.getStatus() == ITestResult.SKIP) {
+
+			//er.log(Status.SKIP, result.getName() + " Test is skipped and skip reason is:-" + result.getThrowable());
+
+			er.log(Status.SKIP,MarkupHelper.createLabel(result.getName() + "Test is skipped and skip reason is:-" + result.getThrowable(),ExtentColor.ORANGE));
+
+		} else if (result.getStatus() == ITestResult.FAILURE) {
+
+			er.log(Status.FAIL, MarkupHelper.createLabel(result.getName() + " -Test failed" + result.getThrowable(),ExtentColor.RED));
+			
 		} else if (result.getStatus() == ITestResult.STARTED) {
-			test.log(LogStatus.INFO, result.getName() + " test started");
+
+			er.log(Status.INFO, MarkupHelper.createLabel(result.getName() + " - Test started", ExtentColor.BROWN));
 		}
 	}
 
@@ -119,15 +157,15 @@ public class TestBase {
 
 	@BeforeMethod
 	public void beforeMethod(Method result) {
-		test = extent.startTest(result.getName());
-		test.log(LogStatus.INFO, result.getName() + " test is Started");
+
+		er = extent.createTest(result.getName());
+
+		er.log(Status.INFO, MarkupHelper.createLabel(result.getName() + " -Test started", ExtentColor.GREEN));
 
 	}
 
 	@AfterClass(alwaysRun = true)
-	public void endTest() {
-		// driver.quit();
-		extent.endTest(test);
+	public void endTest() {	
 		extent.flush();
 	}
 
@@ -143,47 +181,56 @@ public class TestBase {
 
 		file = new FileInputStream(f1);
 		OR.load(file);
-		logger.info("loading Login.properties");
+		// logger.info("loading Login.properties");
+
+		f1 = new File(System.getProperty("user.dir") + "/src/main/resources/property/Browsertype.properties");
+		file = new FileInputStream(f1);
+		OR.load(file);
+		// logger.info("loading Browsertype.properties");
 
 		f1 = new File(System.getProperty("user.dir") + "/src/main/resources/property/Logout.properties");
 		file = new FileInputStream(f1);
 		OR.load(file);
-		logger.info("loading Logout.properties");
+		// logger.info("loading Logout.properties");
 
 		f1 = new File(System.getProperty("user.dir") + "/src/main/resources/property/Delete.properties");
 		file = new FileInputStream(f1);
 		OR.load(file);
-		logger.info("loading Delete.properties");
+		// logger.info("loading Delete.properties");
 
 		f1 = new File(System.getProperty("user.dir") + "/src/main/resources/property/Feature.properties");
 		file = new FileInputStream(f1);
 		OR.load(file);
-		logger.info("loading Feature.properties");
+		// logger.info("loading Feature.properties");
 
 		f1 = new File(System.getProperty("user.dir") + "/src/main/resources/property/Fetch.properties");
 		file = new FileInputStream(f1);
 		OR.load(file);
-		logger.info("loading Fetch.properties");
+		// logger.info("loading Fetch.properties");
 
 		f1 = new File(System.getProperty("user.dir") + "/src/main/resources/property/Forward.properties");
 		file = new FileInputStream(f1);
 		OR.load(file);
-		logger.info("loading Forward.properties");
+		// logger.info("loading Forward.properties");
 
 		f1 = new File(System.getProperty("user.dir") + "/src/main/resources/property/Listing.properties");
 		file = new FileInputStream(f1);
 		OR.load(file);
-		logger.info("loading Listing.properties");
+		// logger.info("loading Listing.properties");
 
 		f1 = new File(System.getProperty("user.dir") + "/src/main/resources/property/Update.properties");
 		file = new FileInputStream(f1);
 		OR.load(file);
-		logger.info("loading Update.properties");
+		// logger.info("loading Update.properties");
 
 		f1 = new File(System.getProperty("user.dir") + "/src/main/resources/property/ReplaceDoc.properties");
 		file = new FileInputStream(f1);
 		OR.load(file);
-		logger.info("loading upload.properties");
+		
+		f1 = new File(System.getProperty("user.dir") + "/src/main/resources/property/Forward.properties");
+		file = new FileInputStream(f1);
+		OR.load(file);
+		logger.info("Loading all properties files");
 	}
 
 	public static WebElement getLocator(String locator) throws Exception {
@@ -247,6 +294,7 @@ public class TestBase {
 	}
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("hai this is testbase executing");
+		System.out.println("Testbase executing");
 	}
+
 }
