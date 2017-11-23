@@ -1,0 +1,73 @@
+
+.index
+{
+ 	background-color: #2ECC71;
+}
+.register  
+{
+	background-color: brown;
+}
+.registration  
+{
+
+    background-image: url(image/des.jpg);
+      
+}
+.detail 
+{
+	background-color: #2ECC71;
+	
+      
+}
+.success
+{
+		
+      
+}
+.admin
+{
+	background-color: #B2BABB;
+	
+      
+}
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    font-size: 22px;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+a{
+	color: black;
+}
+
+sup{color: red;}
+
+button
+{
+	
+	border: 1px solid black;
+	 background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 12px;
+
+}
