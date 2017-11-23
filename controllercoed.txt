@@ -1,0 +1,201 @@
+<?php
+include '../Model/mstUserModel.php';
+
+$object = new mstUserController();
+/**
+* 
+*/
+class mstUserController
+{
+	
+	function __construct()
+	{
+		if (!empty($_REQUEST['log_btn'])) 
+		{
+			self::uloginprocess();
+		}
+		elseif(!empty($_REQUEST['uRegister']))
+		{
+			self::uRegisterprocess();
+		}
+
+	}
+
+	function uloginprocess()
+	{
+		$uid=$_REQUEST['uname'];
+		$upas=$_REQUEST['upass'];
+		$pwd=md5($upas);
+
+		$query=new mstUserModel();
+
+		$login=$query->fnloginchk($uid,$pwd);
+
+		if ($login) 
+		{
+			self::view();
+		} 
+		else 
+		{
+			header('location:../View/home/login.php');
+		}
+		//echo "Login Successfully";
+		//exit();
+	}
+
+	function view()
+	{
+		header('location:../View/select/fetch.php');
+		//print_r("View page");
+		//exit();
+	}
+	function uRegisterprocess()
+	{
+		$username=$_REQUEST['name'];
+		$password=$_REQUEST['pass'];
+		$pass=md5($password);
+		$gender=$_REQUEST['gender'];
+		$Occupation=$_REQUEST['usertype'];
+		$address1=$_REQUEST['add'];
+		$address2=$_REQUEST['add1'];
+		$phoneno=$_REQUEST['con'];
+		$pincode=$_REQUEST['pin'];
+
+		$check="$_REQUEST[chk]";
+		$cash="$_REQUEST[cs]";
+		$ccard="$_REQUEST[cc]";
+
+		$pay=$check.",".$cash.",".$ccard;
+		$email=$_REQUEST['mail'];
+
+		$image=$_FILES["img"];
+		$imgname=$image['name'];
+		$imgtmpname=$image['tmp_name'];
+		$path="../webroot/upload/images/";
+		move_uploaded_file($imgtmpname, $path.$imgname);
+
+		$cdate= date('Y-m-d h:i:s');
+		$delflg='0';
+
+		$query=new mstUserModel();
+
+		$count=$query->countgen();
+		$sathi="SPPR";
+		$uid=str_pad($count,4,"0",STR_PAD_LEFT);
+		$userid=$sathi.$uid;
+
+		$reg=$query->fnreg($userid,$username,$pass,$gender,$Occupation,$address1,$address2,$phoneno,$pincode,$pay,$email,$imgname,$cdate,$delflg);
+
+		if ($reg) 
+		{
+			header('location:../View/home/login.php');
+		} 
+		else 
+		{
+			header('location:../View/home/register.php');
+		}
+		//echo "Register Successfully";
+	}
+}
+?>
+-----------------------------------------------------------------------------------------------------
+<?php
+include '../Model/mstUserModel.php';
+
+$object = new mstUserController();
+/**
+* 
+*/
+class mstUserController
+{
+	
+	function __construct()
+	{
+		if (!empty($_REQUEST['log_btn'])) 
+		{
+			self::uloginprocess();
+		}
+		elseif(!empty($_REQUEST['uRegister']))
+		{
+			self::uRegisterprocess();
+		}
+
+	}
+
+	function uloginprocess()
+	{
+		$uid=$_REQUEST['uname'];
+		$upas=$_REQUEST['upass'];
+		$pwd=md5($upas);
+
+		$query=new mstUserModel();
+
+		$login=$query->fnloginchk($uid,$pwd);
+
+		if ($login) 
+		{
+			self::view();
+		} 
+		else 
+		{
+			header('location:../View/home/login.php');
+		}
+		//echo "Login Successfully";
+		//exit();
+	}
+
+	function view()
+	{
+		header('location:../View/select/fetch.php');
+		//print_r("View page");
+		//exit();
+	}
+	function uRegisterprocess()
+	{
+		$username=$_REQUEST['name'];
+		$password=$_REQUEST['pass'];
+		$pass=md5($password);
+		$gender=$_REQUEST['gender'];
+		$Occupation=$_REQUEST['usertype'];
+		$address1=$_REQUEST['add'];
+		$address2=$_REQUEST['add1'];
+		$phoneno=$_REQUEST['con'];
+		$pincode=$_REQUEST['pin'];
+
+		$check="$_REQUEST[chk]";
+		$cash="$_REQUEST[cs]";
+		$ccard="$_REQUEST[cc]";
+
+		$pay=$check.",".$cash.",".$ccard;
+		$email=$_REQUEST['mail'];
+
+		$image=$_FILES["img"];
+		$imgname=$image['name'];
+		$imgtmpname=$image['tmp_name'];
+		$path="../webroot/upload/images/";
+		move_uploaded_file($imgtmpname, $path.$imgname);
+
+		$cdate= date('Y-m-d h:i:s');
+		$delflg='0';
+
+		$query=new mstUserModel();
+
+		$count=$query->countgen();
+		$sathi="SPPR";
+		$uid=str_pad($count,4,"0",STR_PAD_LEFT);
+		$userid=$sathi.$uid;
+
+		$reg=$query->fnreg($userid,$username,$pass,$gender,$Occupation,$address1,$address2,$phoneno,$pincode,$pay,$email,$imgname,$cdate,$delflg);
+
+		if ($reg) 
+		{
+			header('location:../View/home/login.php');
+		} 
+		else 
+		{
+			header('location:../View/home/register.php');
+		}
+		//echo "Register Successfully";
+	}
+}
+?>

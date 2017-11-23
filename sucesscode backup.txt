@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<?php include 'header.php'; ?>
+<html>
+<head>
+<title>success</title>
+
+</head>
+<script> // to pass value of usertype to $ut.
+function test(a) {
+var x = (a.value || a.options[a.selectedIndex].value);  //crossbrowser solution =)
+//loading the url with usertype value
+window.location.href = "sucess.php?x=" + x; 
+}
+</script>
+<body class="success" style="background-image: url(image/sea.jpg);">
+	<form method="post" action="sucess.php" id="nameform">
+<?php
+
+session_start();
+$con=mysql_connect("localhost", "root", "");// or die (mysql_error()); //Connect to server
+mysql_select_db("phpproject",$con);// or die ("Cannot connect to database"); //Connect to database
+
+
+
+?>
+
+
+<h4 align="right" style="font-family:Times New Roman;" ><a href="logout.php">Logout~<?php echo $_SESSION['uid']; ?></a></h4> 
+<h3 align="center">success page Table view</h3>
+<center>
+<font color="#030005">
+
+
+<select onchange="test(this)" id="select_id">
+        <option value="">-Select-</option>
+        <option value="userid">UserId</option>
+        <option value="name">Name</option>
+        <option value="userType">UserType</option>
+        <option value="email">Email</option>
+</select>
+<!-- code check -->
+
+<?php 
+$ut = $_REQUEST['x'];
+echo "$ut"; ?>
+
+
+<?php $gender=$_REQUEST['gen']; // including html tag in php, loading href with gender value 
+
+				if ($gender=='') { echo "ALL"; } else{ ?>
+					
+				<a href="sucess.php" style="color:black">All</a>  
+
+				<?php }
+
+				if ($gender=='1') { echo "MALE"; } else{ ?>
+					
+				<a href="sucess.php?gen=1" style="color:black">Male</a>  
+
+				<?php } 
+				if ($gender=='2') { echo "FEMALE"; } else{ ?>
+				<a href="sucess.php?gen=2" style="color:black">Female</a> 
+				<?php } ?>
+
+<input type="text" name="search" id="search" >
+
+<input type="submit" value="search" id="search" form="nameform">
+
+<?php  $s=$_REQUEST['search'];
+echo"$s";
+?>
+</font>
+</center>
+
+
+
+<?php
+session_start();
+ 
+
+
+if (!empty($gender)) { // to select table by gender
+
+$query=mysql_query("SELECT * FROM msdUser Where gender='$gender' AND delFlag='0'",$con);	
+}
+elseif(!empty($s)){ // to select by like mothod in query with input from serach box ex=a;
+$query = mysql_query("SELECT * FROM msdUser where name like '%$s%'",$con);
+
+ }
+elseif(!empty($ut)) { // to sort by user type
+ $query = mysql_query("SELECT * FROM msdUser ORDER BY $ut ASC",$con);
+}
+else{ // to select all the table values
+$query=mysql_query("SELECT * FROM msdUser Where delFlag='0'",$con);
+}
+
+?>
+
+
+
+<table style="font-family:sans serif;" align="center" border="1" bgcolor="white">
+	<tr>
+		<td>S.No</td>
+		<td>UserId</td>
+		<td>Name</td>
+		<td>Gender</td>
+		<td>UserType</td>
+		<td>Address</td>
+		<td>Contact Number</td>
+		<td>pincode</td>
+		<td>payment</td>
+		<td>Email</td>
+	</tr>
+	<?php $i=0;
+	while ($data=mysql_fetch_assoc($query)) { ?>
+	 <tr>
+	 	<td><?php echo $i+1; ?></td> 
+
+	 	<td>  <a href="detail.php?id=<?php echo $data['id'];?>"><?php echo $data ['userid'];?></a>
+	        
+	 	</td>
+	 	<td><?php echo $data ['name']; ?></td>
+
+	 	<td><?php echo $data ['gender']>1?"Female":"Male"; ?></td>
+
+	 	<!-- <td><?php if($data ['userType']==1){ echo "Admin";}; ?></td> -->
+
+	 	<td><?php $n=$data ['userType'];  
+
+	 	switch ($n) {
+    case 1:
+        echo "Admin";
+        break;
+    case 2:
+        echo "Employee";
+        break;
+    case 3:
+        echo "Student";
+        break;
+    default:
+        echo "not available";
+}      ?></td> 
+
+
+	 	<td><?php echo $data ['address']; ?></td>
+	 	<td><?php echo $data ['contact']; ?></td>
+	 	<td><?php echo $data ['pincode']; ?></td>
+
+	 	<td><?php $str=$data ['payment']; 
+
+  	$p = explode(',',$str);
+    
+
+    if (in_array("1", $p)) {
+    echo "check ";
+}
+	if (in_array("2", $p)) {
+    echo "cash ";
+}
+	if (in_array("3", $p)) {
+    echo "card";
+}
+     
+
+	 	?></td>
+
+	 	<td><?php echo $data ['email']; ?></td>
+	 </tr> <?php $i++;
+	} ?>
+</table>
+
+</form>
+
+
+</body>
+</html>
+----------------------------------------------------------------------------------
+<script type="text/javascript">
+
+            $(document).ready(function(){
+
+            $('.pagination').pagination({
+                    
+                    hrefTextPrefix : 'sucess.php?page='
+                });
+                });
+            </script>

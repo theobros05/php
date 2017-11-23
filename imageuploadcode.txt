@@ -1,0 +1,33 @@
+function preview_image(event) 
+{
+ var reader = new FileReader();
+ reader.onload = function()
+ {
+  var output = document.getElementById('output_image');
+  output.src = reader.result;
+ }
+ reader.readAsDataURL(event.target.files[0]);
+}
+--------------------------------------------------
+<td>
+			<img src="upload/images/<?php echo $row['image']; ?>" height="200px" width="200px"  style="border:2px solid #333333; border-radius: 5px;" id="output_image" name="img"><br>
+			<input type="hidden" name="hid_img" value="<?php echo $row['image']; ?>">
+			
+			<input type="file" name="img" id="img"  onchange="preview_image(event)">	
+			<p style="font-style: italic;color: white; font-size: 7px;">if You Want to Change Profile Pic</p>
+			</td>
+-----------------------------------------------------------
+
+$imgpath = $_FILES["img"]['name'];
+if (!empty($imgpath)) 
+{
+	$image=$_FILES["img"];
+	$imgname=$image['name'];
+	$imgtmpname=$image['tmp_name'];
+	$path="upload/images/";
+	move_uploaded_file($imgtmpname, $path.$imgname);
+} 
+else 
+{
+ 	$imgname=$_REQUEST['hid_img'];
+}

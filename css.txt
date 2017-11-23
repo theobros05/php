@@ -1,0 +1,92 @@
+sup
+{
+	color: red;
+}
+.th
+{
+	text-align: left;
+	line-height: 1.8;
+	font-size: 20px;
+	color: white;
+}
+body
+{
+	background-image: url("2.jpg");
+}
+.b
+{
+	font-weight: bold;
+	font-variant: normal;
+	font-family: "Times New Roman", Times, serif;
+	text-decoration-color: black;
+	border-style: double;
+	height: 40px;
+	width: 150px; 
+	padding: 10px;
+	border-radius: 12px;
+}
+button
+{
+	
+	border: 1px solid black;
+	 background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 12px;
+
+}		
+.tab
+{
+	background-color: rgb(230, 248, 222);
+	color: black;
+	height: 100px;
+	background: linear-gradient(to right, rgba(255,0,0,1), rgba(255,0,0,0));
+
+}
+background: linear-gradient(to right, rgba(255,0,0,1), rgba(255,0,0,0));
+.h1
+{
+	color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+.h3
+{
+	color: yellow;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    
+
+}
+.tb
+{
+	
+	border-style: double;
+
+}
+ins
+{
+	text-align: center;
+	
+}
+input[type=text], input[type=password] {
+    
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+.itab.th
+{
+ color: white;
+}
+.color{
+
+}
+

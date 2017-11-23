@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<?php include 'header.php'; ?>
+<html>
+<head>
+	<title>Detail page</title>
+</head>
+<body class="detail">
+	<h3 align="center">Detail View Single Person</h3>
+<h4 align="right" style="font-family:Times New Roman;" ><a href="logout.php">Logout~<?php session_start(); echo $_SESSION['uid']; ?></a></h4> 
+
+<?php
+session_start();
+
+$id = $_REQUEST['id'];
+ $con=mysql_connect("localhost", "root", "");// or die (mysql_error()); //Connect to server
+          mysql_select_db("phpproject",$con);// or die ("Cannot connect to database"); //Connect to database
+$query=mysql_query("SELECT * FROM msdUser Where id='$id'",$con); 
+
+//$query=mysql_query("SELECT * FROM msdUser Where userid='TEN0005'",$con); 
+ //$query=mysql_query("SELECT * FROM msdUser",$con); 
+//execute the SQL query and return records
+?>
+<table style="font-family:sans serif;" align="center" border="1" bgcolor="white">
+	
+	<?php $i=0;
+	while ($data=mysql_fetch_array($query)) { ?>
+
+    <tr><td> S.No </td><td><input type="text" id="name"  value="<?php echo $data ['id']; ?> " readonly></td></tr>
+    
+	<tr><td> UserId </td><td><input type="text" id="name"  value="<?php echo $data ['userid']; ?> " readonly></td></tr>
+
+    <tr><td> Name </td><td><input type="text" id="name"  value="<?php echo $data ['name']; ?> " readonly></td></tr>
+
+    <tr><td> Gender </td><td><input type="text" id="name"  value="<?php echo $data ['gender']; ?> " readonly></td></tr>
+    <tr><td> UserType </td><td><input type="text" id="name"  value="<?php echo $data ['userType']; ?> " readonly></td></tr>
+    <tr><td> Address </td><td><input type="text" id="name"  value="<?php echo $database ['address']; ?> " readonly></td></tr>
+    <tr><td> Contact </td><td><input type="text" id="name"  value="<?php echo $data ['contact']; ?> " readonly></td></tr>
+    <tr><td> pincode </td><td><input type="text" id="name"  value="<?php echo $data ['pincode']; ?> " readonly></td></tr>
+    <tr><td> Email </td><td><input type="text" id="name"  value="<?php echo $data ['email']; ?> " readonly></td></tr>
+   
+	 <tr>
+	 	<td><?php echo $i+1; ?></td>
+
+	 	<td><?php echo $data ['userid'];?>
+	 
+	 	</td>
+	 	<td><?php echo $data ['name']; ?></td>
+
+	 	<td><?php echo $data ['gender']>1?"Female":"Male"; ?></td>
+
+	 	<!-- <td><?php if($data ['userType']==1){ echo "Admin";}; ?></td> -->
+
+	 	<td><?php $n=$data ['userType'];  
+
+	 	switch ($n) {
+    case 1:
+        echo "Admin";
+        break;
+    case 2:
+        echo "Employee";
+        break;
+    case 3:
+        echo "Student";
+        break;
+    default:
+        echo "not available";
+}      ?></td> 
+
+
+	 	<td><?php echo $data ['address']; ?></td>
+	 	<td><?php echo $data ['contact']; ?></td>
+	 	<td><?php echo $data ['pincode']; ?></td>
+
+	 	<td><?php $str=$data ['payment']; 
+
+  	$p = explode(',',$str);
+    //print_r($p)
+
+    
+    foreach ($p as $value) {
+
+   // 	if ($value=='1') {
+   // 		echo"check";
+   // 	}
+   // 	elseif ($value=='2') {
+   // 		echo"cash";
+   // 	}
+   // 	else{
+   // 		echo"credit";
+   // 	}
+
+    echo "Value: $value<br />\n";
+}
+  
+
+	 	?></td>
+
+	 	<td><?php echo $data ['email']; ?></td>
+	 </tr> <?php $i++;
+
+
+
+
+	} ?>
+
+
+ <?php while ($data=mysql_fetch_array($query)) { ?>
+
+      
+
+      
+ <table align="center">
+
+ 	<tr><td> UserId </td><td><input type="text" id="name"  value="<?php echo $data ['userid']; ?> " readonly></td></tr>
+
+    <tr><td> Name </td><td><input type="text" id="name"  value="<?php echo $data ['name']; ?> " readonly></td></tr>
+
+    <tr><td> Gender </td><td><input type="text" id="name"  value="<?php echo $data ['gender']; ?> " readonly></td></tr>
+    <tr><td> UserType </td><td><input type="text" id="name"  value="<?php echo $data ['userType']; ?> " readonly></td></tr>
+    <tr><td> Address </td><td><input type="text" id="name"  value="<?php echo $database ['address']; ?> " readonly></td></tr>
+    <tr><td> Contact </td><td><input type="text" id="name"  value="<?php echo $data ['contact']; ?> " readonly></td></tr>
+    <tr><td> pincode </td><td><input type="text" id="name"  value="<?php echo $data ['pincode']; ?> " readonly></td></tr>
+    <tr><td> Email </td><td><input type="text" id="name"  value="<?php echo $data ['email']; ?> " readonly></td></tr>
+   
+ <?php } ?>  
+          
+  </table>
+       
+
+</body>
+</html>
+<!-- <input type="checkbox" id="uppin" name="check" value="1" <?php if($cash=="1") {?>><label>Check</label> -->
+    	<!-- <input type="checkbox" id="uppin" name="cash" value="2" checked=<?php}?>><label>Cash</label> -->
+    	
+    	<!-- <input type="checkbox" id="uppin" name="credit card" value="3" ><label>Credit Card</label> -->
